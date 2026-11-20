@@ -1,174 +1,176 @@
-# La Maison Dorée — strona restauracji z systemem rezerwacji
+# La Maison Dorée
 
-[![CI](https://github.com/Sitkowski01/restaurantDesign/actions/workflows/ci.yml/badge.svg)](https://github.com/Sitkowski01/restaurantDesign/actions/workflows/ci.yml)
+**Demonstracyjna aplikacja restauracji: od wyboru stolika przez gościa po panele kelnera, menedżera i administratora.**
 
-Aplikacja webowa dla restauracji: strona prezentacyjna, pełny proces rezerwacji stolika
-oraz trzy rozbudowane panele operacyjne dla personelu — kelnera, menedżera i administratora,
-każdy z własnym zakresem uprawnień. Zbudowana w React i TypeScript, z backendem
-na Supabase i wdrożeniem na Vercelu.
+**Strona: [restaurant-design-ten.vercel.app](https://restaurant-design-ten.vercel.app)**
 
-## Co robi
+Restauracja jest fikcyjna — rezerwacje, płatności i dane operacyjne służą prezentacji interfejsu.
+
+[![CI](https://github.com/Sitkowski01/restaurant-booking-panels/actions/workflows/ci.yml/badge.svg)](https://github.com/Sitkowski01/restaurant-booking-panels/actions/workflows/ci.yml)
+
+![Strona główna restauracji La Maison Dorée](docs/zrzuty/d-start.webp)
+
+## Po co to jest
+
+Gość poznaje restaurację i przechodzi przez wybór terminu, stolika oraz danych kontaktowych.
+Personel ma osobne widoki do obsługi sali, planowania zmiany i konfiguracji lokalu.
 
 **Część dla gościa**
 
-- Strona główna z galerią w układzie coverflow i sekcją o restauracji
-- Karta menu
-- Podstrona wydarzeń prywatnych
-- **Rezerwacja stolika w czterech krokach:** wybór daty i godziny → wybór stolika z planu
-  sali → dane gościa → potwierdzenie
-- Zgoda na pliki cookie
-- Obsługa nieistniejących adresów (404)
+- Strona główna z galerią coverflow i opisem restauracji, karta menu i wydarzenia prywatne.
+- **Rezerwacja w czterech krokach:** data i godzina → plan sali → dane gościa → potwierdzenie.
+- Dobór stolika do liczby gości, oznaczenia zajętych miejsc i naliczanie depozytu od osoby.
+- Walidacja danych kontaktowych, zgody na przetwarzanie danych oraz pól BLIK i karty.
+- Zgoda na pliki cookie i strona 404 dla nieistniejących adresów.
 
-**Część dla personelu — trzy panele, trzy różne role**
+**Panel kelnera — obsługa sali**
 
-Logowanie pracownika kieruje do panelu zależnego od roli. Każdy z nich to osobny,
-rozbudowany widok — łącznie ponad 7 000 linii kodu.
+- Plan sali z podziałem na sekcje i przeciąganiem stolików.
+- Statusy stolików, nadchodzące rezerwacje i obsługa gości bez rezerwacji.
+- Zamówienia z karty: dania, napoje, dobór win i dolewki.
+- Oznaczanie napojów jako podanych i kontrola wydania zamówienia.
+- Alergeny gościa, własne wpisy i informacja o powiadomieniu kuchni.
 
-**Panel kelnera** — narzędzie do obsługi sali w trakcie serwisu
+**Panel menedżera — bieżąca zmiana**
 
-- Interaktywny **plan sali** z podziałem na sekcje i przeciąganiem stolików
-- Statusy stolików i lista nadchodzących rezerwacji, także gości bez rezerwacji
-- **Przyjmowanie zamówień** z karty: dania, napoje, dobór win, dolewki
-- Zbiorcze oznaczanie napojów jako podanych i kontrola, czy całe zamówienie wyszło
-- **Alergeny przy pozycji zamówienia**, z możliwością dopisania własnego,
-  i oznaczenie, że kuchnia została powiadomiona
+- Rezerwacje z filtrami oraz podsumowania dnia i tygodnia.
+- Edytowalny grafik zmian i podgląd zespołu.
+- Przegląd stolików i ich dostępności.
+- Edycja karty: dania, składniki, kategorie, alergeny i oznaczenia alkoholu.
 
-**Panel menedżera** — bieżące zarządzanie zmianą
+**Panel administratora — konfiguracja lokalu**
 
-- Nadchodzące rezerwacje z filtrami i podsumowaniem dnia oraz tygodnia
-- **Grafik zmian** i obsada personelu
-- Zarządzanie stolikami i ich dostępnością
-- Edycja karty: dania, składniki, kategorie, oznaczenia alergenów i zawartości alkoholu
+- Edycja personelu: role, stanowiska, umowy, aktywacja i dezaktywacja wpisów.
+- Edycja karty dań i napojów, kategorii i alergenów.
+- Podgląd wydarzeń, rezerwacji na wyłączność i zasad anulacji z opłatami.
+- Grafik oraz analityka przychodów, zestawienia tygodniowe i miesięczne, aktywność personelu.
 
-**Panel administratora** — konfiguracja całego lokalu
+Zmiany w panelach działają na lokalnym stanie komponentów. Edycja personelu nie tworzy
+konta w systemie logowania, a widok polityki anulacji nie pobiera opłat.
 
-- **Zarządzanie personelem:** role (administrator, menedżer, serwis), stanowiska,
-  umowy, aktywacja i dezaktywacja kont
-- Pełna edycja karty dań i napojów wraz z kategoriami i alergenami
-- Wydarzenia i rezerwacje na wyłączność
-- **Polityka anulacji** z regułami opłat po terminie
-- **Analityka:** przychody, podsumowania tygodniowe i miesięczne, aktywność personelu
-
-## Stack
-
-| Warstwa | Technologie |
+| **Karta menu** | **Wybór terminu rezerwacji** |
 |---|---|
-| Frontend | React, TypeScript, Vite |
-| Style | Tailwind CSS |
-| Komponenty | Radix UI (shadcn/ui), Material UI |
-| Backend | Supabase — Edge Functions, magazyn klucz–wartość |
-| Hosting | Vercel |
+| ![Komputer: karta menu restauracji La Maison Dorée](docs/zrzuty/d-menu.webp) | ![Komputer: ekran rezerwacji stolika](docs/zrzuty/d-rezerwacja.webp) |
+| **Panel kelnera** | **Panel menedżera** |
+| ![Komputer: panel kelnera do obsługi sali i zamówień](docs/zrzuty/d-panel-kelnera.webp) | ![Komputer: panel menedżera z przeglądem pracy restauracji](docs/zrzuty/d-panel-menedzera.webp) |
+| **Panel administratora** | |
+| ![Komputer: panel administratora restauracji](docs/zrzuty/d-panel-administratora.webp) | |
 
-## Decyzje projektowe
+### Na telefonie
 
-**Klucz rezerwacji niesie datę i godzinę.** Rezerwacje leżą pod
-`reservation:{data}:{godzina}:{id}`, więc pytanie „co jest zajęte tego dnia o tej porze"
-to jeden skan po prefiksie, bez przeglądania całego zbioru. Ta sama sztuczka obsługuje
-stoliki (`table:{id}`). Cena: nie da się tanio zapytać „wszystkie rezerwacje tego gościa" —
-trzeba by drugiego indeksu, którego tu nie ma, bo żaden ekran tego nie potrzebuje.
+| **Start** | **Galeria** | **Menu** |
+|---|---|---|
+| ![Telefon: strona główna La Maison Dorée](docs/zrzuty/m-start.webp) | ![Telefon: galeria restauracji](docs/zrzuty/m-galeria.webp) | ![Telefon: karta menu restauracji](docs/zrzuty/m-menu.webp) |
 
-**Plan sali jest danymi, nie układem w kodzie.** Każdy stolik trzyma własne `x`, `y`,
-`width`, `height` i `shape`, dlatego menedżer może przeciągnąć stolik w panelu i zmiana
-zostaje. Gdyby rozkład sali siedział w komponencie, każda zmiana ustawienia oznaczałaby
-wdrożenie.
+## Co jest w środku
 
-**Dopasowanie stolika to przedział, nie równość.** Stolik pasuje, gdy jego pojemność
-mieści się w `[liczba gości, liczba gości + 2]`. Sama równość odrzucałaby trójkę przy
-czteroosobowym stoliku, a brak górnego ograniczenia sadzałby parę przy stole na osiem
-i wypychał z sali większe grupy.
+**Front:** React, TypeScript, Vite, Tailwind CSS i React Router. Repozytorium zawiera
+komponenty shadcn/ui oparte na Radix UI oraz zależności Material UI.
 
-**Trzy osobne panele zamiast jednego z uprawnieniami.** Kelner w trakcie serwisu, menedżer
-układający grafik i administrator konfigurujący lokal patrzą na zupełnie inne dane. Jeden
-ekran z ukrywanymi kawałkami byłby zlepkiem trzech, a kontrola dostępu rozsypałaby się po
-warunkach w widoku. Tu rola decyduje o trasie, a nie o tym, co jest schowane.
+**Rezerwacja w demo:** kolejne ekrany przekazują dane przez stan routingu.
+Formularz kończy się przejściem do potwierdzenia — nie wysyła rezerwacji do Supabase
+i nie obciąża karty ani konta BLIK.
 
-**Testy chodzą po zbudowanej paczce.** `vite preview` serwuje dokładnie to, co trafia na
-produkcję. Serwer deweloperski ma inny bundling i inne ścieżki — testy na nim potrafią być
-zielone przy zepsutym buildzie.
+**Backend w repozytorium:** funkcja Supabase Edge z routerem Hono udostępnia operacje
+na stolikach i rezerwacjach w magazynie klucz–wartość. Obecne widoki demonstracyjne
+nie wywołują tych endpointów. Konfiguracja klienta czyta zmienne środowiskowe.
 
-**Selektory na `data-testid`, nie na klasach Tailwinda.** Przemalowanie przycisku nie może
-wywracać testu, który sprawdza rezerwację.
+**Logowanie i role:** lista kont demonstracyjnych znajduje się w kodzie.
+Sesja trafia do `sessionStorage`, a `RequireAuth` kontroluje przejścia między trasami
+w przeglądarce. To demonstracja ról, nie uwierzytelnianie po stronie serwera.
 
-## Zakres i kierunki rozwoju
+### Dane do paneli demo
 
-Projekt pokrywa **pełną ścieżkę: od rezerwacji gościa po obsługę sali i konfigurację
-lokalu**. Warstwa danych jest dobrana pod tę skalę — magazyn klucz–wartość obsługuje
-kilkaset rezerwacji bez zbędnej ceremonii, a analityka liczy się w aplikacji.
+Otwórz [logowanie personelu](https://restaurant-design-ten.vercel.app/login)
+i wpisz imię, nazwisko oraz PIN:
 
-Przejście na bazę relacyjną to naturalny następny krok i otwiera trzy rzeczy naraz:
-unikalne ograniczenie na parę (stolik, termin), które gwarantuje jednoznaczność
-rezerwacji przy równoczesnych zgłoszeniach; raporty liczone po stronie bazy;
-oraz pełne konta personelu z hasłami zamiast obecnego logowania PIN-em, wystarczającego
-do rozdzielenia trzech ról.
+| Rola | Imię i nazwisko | PIN | Panel |
+|---|---|---|---|
+| Kelner | Jan Kowalski | `111111` | `/staff-dashboard` |
+| Menedżer | Magdalena Dąbrowska | `666666` | `/manager` |
+| Administrator | Mikołaj Sitek | `000000` | `/admin` |
+
+Przed sprawdzeniem innej roli wyloguj się przyciskiem w panelu.
+
+### Decyzje projektowe
+
+**Klucz rezerwacji niesie datę i godzinę.** Backend zapisuje
+`reservation:{data}:{godzina}:{id}`, a stoliki pod `table:{id}`. Odczyt rezerwacji
+na termin korzysta z prefiksu; wyszukiwanie po gościu wymagałoby osobnego indeksu.
+
+**Plan sali jest danymi.** Stoliki mają pozycję, rozmiar i kształt. W panelu kelnera
+przeciąganie zmienia stan widoku; obecna wersja nie zapisuje tego ustawienia na serwerze.
+
+**Dopasowanie stolika jest przedziałem.** Pojemność musi mieścić się w zakresie
+`[liczba gości, liczba gości + 2]`. Pozwala to posadzić trzy osoby przy stoliku
+czteroosobowym, bez proponowania parze stołu na osiem osób.
+
+**Osobne panele dla różnych zadań.** Rola wybiera trasę i widok. Menedżer może wejść
+także do panelu kelnera, a administrator do wszystkich paneli.
+
+**Testy zbudowanej aplikacji.** Playwright korzysta z `vite preview`, a selektory
+opierają się na `data-testid`, dzięki czemu nie zależą od klas Tailwinda.
+
+### Testy i ciągła integracja
+
+| Plik | Zakres |
+|---|---|
+| `e2e/reservation-flow.spec.ts` | Przejście czterech kroków, przekazanie danych, depozyt od osoby, blokada bez terminu, pojemność i zajętość stolików |
+| `e2e/guest-details-validation.spec.ts` | Imię, e-mail, telefon, zgoda, kod BLIK, formatowanie i walidacja karty, demonstracyjne potwierdzenie płatności |
+| `e2e/staff-access.spec.ts` | Logowanie ról, błędny PIN, ochrona tras, przekierowania aktywnej sesji i 404 |
+
+Konfiguracja uruchamia zestaw w Chromium, a przypadki oznaczone `@mobile` także
+w profilu Pixel 7. Reguły doboru stolików i dostępu według roli mają osobne sprawdzenia.
+
+Workflow `.github/workflows/ci.yml` działa dla pushów i pull requestów do `main`
+oraz `master`, a także ręcznie. Instaluje zależności, buduje aplikację, instaluje
+Chromium i uruchamia Playwrighta. Raport HTML jest przechowywany przez 14 dni.
+
+### Zakres i dalszy rozwój
+
+Demo obejmuje ekrany od rezerwacji po obsługę i konfigurację lokalu.
+Kolejny krok to połączenie widoków z trwałymi danymi, serwerowe konta personelu
+oraz integracja płatności. Relacyjna baza pozwoliłaby dodać unikalne ograniczenie
+na stolik i termin oraz raporty liczone po stronie bazy. Obecny backend sprawdza
+zajętość przed zapisem, lecz nie wykonuje tych operacji atomowo.
+
+**Pochodzenie i zależności:** szkielet pochodzi z Figma Make, komponenty bazowe
+z shadcn/ui na licencji MIT, a zdjęcia z Unsplash. Szczegóły:
+[ATTRIBUTIONS.md](ATTRIBUTIONS.md).
 
 ## Uruchomienie
 
 ```bash
 npm ci
-cp .env.example .env      # uzupełnij VITE_SUPABASE_PROJECT_ID i VITE_SUPABASE_ANON_KEY
-npm run dev               # serwer deweloperski
-npm run build             # build produkcyjny do dist/
-npm run preview           # podgląd builda na http://localhost:4173
-npm run test:e2e          # testy end-to-end
-```
-
-Klucze Supabase znajdziesz w panelu projektu, w **Settings → API**.
-W repozytorium nie ma żadnych sekretów — konfiguracja idzie wyłącznie przez zmienne środowiskowe.
-
-## Testy
-
-**30 testów end-to-end w Playwrighcie**, w dwóch konfiguracjach: Chromium na desktopie
-(cały zestaw) i Pixel 7 dla ścieżki krytycznej. Testy chodzą po **zbudowanej** aplikacji
-uruchomionej przez `vite preview` — po tej samej paczce, która trafia na produkcję,
-a nie po serwerze deweloperskim.
-
-```bash
-npm run test:e2e         # cały zestaw
-npm run test:e2e:ui      # tryb interaktywny
+npm run dev              # lokalne demo
+npm run build            # build do dist/
+npm run preview          # podgląd na http://localhost:4173
+npm run test:e2e         # zestaw Playwrighta; wymaga zainstalowanego Chromium
+npm run test:e2e:ui      # interaktywny tryb testów
 npm run test:e2e:report  # ostatni raport HTML
 ```
 
-| Plik | Co sprawdza |
-|---|---|
-| `e2e/reservation-flow.spec.ts` | pełne przejście czterech kroków aż do potwierdzenia i kontrola, że data, godzina, stolik i liczba gości docierają na ostatni ekran; naliczanie depozytu od osoby; blokada przycisku „dalej" bez kompletu danych; dobór stolika do liczby gości; nieklikalność stolika zajętego |
-| `e2e/guest-details-validation.spec.ts` | komunikaty walidacji imienia, e-maila, telefonu, kodu BLIK i zgody RODO; filtrowanie znaków w polu BLIK; formatowanie numeru karty i daty ważności; pełna płatność kartą zakończona potwierdzeniem |
-| `e2e/staff-access.spec.ts` | logowanie każdej z trzech ról, odrzucenie błędnego PIN-u, ochrona tras przed niezalogowanym gościem, odbicie kelnera od panelu kierownika i administratora, dostęp administratora do wszystkich paneli, strona 404 |
-
-Dwie reguły biznesowe, które testy pilnują wprost:
-
-- **Dobór stolika do liczby gości** — stolik jest dostępny, gdy jego pojemność mieści się
-  w przedziale `[liczba gości, liczba gości + 2]`. Czteroosobowy stolik nie zostanie
-  zaproponowany szóstce, ośmioosobowy nie pójdzie pod parę.
-- **Kontrola dostępu wg roli** — wejście pod adres powyżej swojej roli odsyła na `/login`,
-  a ekran logowania rozpoznaje aktywną sesję i zawraca pracownika do jego własnego panelu.
-
-Selektory opierają się na atrybutach `data-testid`, nie na klasach Tailwinda, więc zmiana
-stylowania nie wywraca testów.
-
-## Ciągła integracja
-
-`.github/workflows/ci.yml` — przy każdym pushu i pull requeście na `main`: `npm ci`,
-build produkcyjny, instalacja przeglądarki i pełny zestaw Playwrighta. Raport HTML
-zostaje jako artefakt builda na 14 dni.
+Do samego demo nie trzeba konfigurować Supabase. Przy podłączaniu backendu
+skopiuj `.env.example` do `.env` i uzupełnij `VITE_SUPABASE_PROJECT_ID`
+oraz `VITE_SUPABASE_ANON_KEY`. Funkcje serwerowe wymagają osobnego uruchomienia
+w Supabase i zmiennych `SUPABASE_URL` oraz `SUPABASE_SERVICE_ROLE_KEY`.
 
 ## Struktura
 
-```
-src/app/pages/        widoki: landing, menu, rezerwacja, panele personelu
-src/app/components/   komponenty własne + biblioteka UI
-src/app/routes.tsx    routing
-supabase/functions/   funkcje serwerowe
-utils/supabase/       klient i konfiguracja
-e2e/                  testy end-to-end (fixtures.ts = wspólne kroki)
+```text
+src/app/
+  pages/               strona restauracji, rezerwacja i panele personelu
+  components/          komponenty wspólne i biblioteka UI
+  routes.tsx           trasy i kontrola ról w przeglądarce
+src/styles/            style aplikacji
+supabase/functions/    backend Edge i magazyn klucz–wartość
+utils/supabase/        konfiguracja ze zmiennych środowiskowych
+e2e/                   scenariusze Playwrighta i wspólne kroki
+.github/workflows/     CI: build i testy
+docs/zrzuty/           zrzuty na komputerze i telefonie
 ```
 
-## Pochodzenie i zależności
-
-Szkielet projektu powstał w Figma Make, a warstwa komponentów bazowych to
-[shadcn/ui](https://ui.shadcn.com/) na licencji MIT. Widoki, proces rezerwacji, panele
-personelu, routing, integracja z Supabase i wdrożenie są napisane samodzielnie.
-Zdjęcia pochodzą z [Unsplash](https://unsplash.com/license). Pełna lista w
-[ATTRIBUTIONS.md](ATTRIBUTIONS.md).
+Licencja: MIT
 
 ---
 
