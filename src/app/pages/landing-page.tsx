@@ -2157,6 +2157,9 @@ export function LandingPage() {
               ))}
             </div>
           </div>
+          <p className="mt-6 text-xs sm:text-sm text-center break-words" style={{ fontFamily: C.sans, color: "rgba(197,191,181,1)" }}>
+            Projekt i wykonanie: Mikołaj Sitek, <motion.a href="https://swndevelopment.pl" target="_blank" rel="noopener" className="underline" whileHover={{ color: C.gold }}>SWN Development</motion.a> · <motion.a href="mailto:mikolaj@swndevelopment.pl" className="underline" whileHover={{ color: C.gold }}>mikolaj@swndevelopment.pl</motion.a>
+          </p>
         </div>
       </footer>
 

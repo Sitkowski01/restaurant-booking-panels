@@ -169,3 +169,7 @@ Szkielet projektu powstał w Figma Make, a warstwa komponentów bazowych to
 personelu, routing, integracja z Supabase i wdrożenie są napisane samodzielnie.
 Zdjęcia pochodzą z [Unsplash](https://unsplash.com/license). Pełna lista w
 [ATTRIBUTIONS.md](ATTRIBUTIONS.md).
+
+---
+
+Projekt i wykonanie: **Mikołaj Sitek**, [SWN Development](https://swndevelopment.pl) · [mikolaj@swndevelopment.pl](mailto:mikolaj@swndevelopment.pl)
